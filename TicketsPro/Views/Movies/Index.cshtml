@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Movie>
+
+@{
+    ViewData["Title"] = "List of Movies";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <!-- Link your CSS file -->
+    <link rel="stylesheet" href="~/css/movie-card-styles.css" />
+</head>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-4">
+            <div class="movie-card">
+                <img src="@item.ImageURL" alt="@item.Name">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <span>@item.Name</span>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <a href="@Url.Action("Edit", "Movies", new { id = item.Id })" class="btn btn-warning btn-sm">Edit</a>
+                        }
+                    </h5>
+                    <p class="card-text"><b>Cinema: </b>@item.Cinema.Name</p>
+                    <p class="card-text"><b>Category: </b>@item.MovieCategory</p>
+                    <p class="card-text"><b>Start Date: </b>@item.StartDate.ToString("dd MMM yy")</p>
+                    <p class="card-text"><b>End Date: </b>@item.EndDate.ToString("dd MMM yy")</p>
+                    <p class="card-text">
+                        <b>Status: </b>
+                        @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                        {
+                            <span class="badge bg-success text-white">AVAILABLE</span>
+                        }
+                        else if (DateTime.Now > item.EndDate)
+                        {
+                            <span class="badge bg-danger text-white">EXPIRED</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-primary text-white">UPCOMING</span>
+                        }
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        <a class="btn btn-outline-primary mr-2 btn-sm" asp-action="Details" asp-route-id="@item.Id">Show Details</a>
+                        @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                        {
+                            <a class="btn btn-primary btn-sm" asp-controller="Orders" asp-action="AddItemToShoppingCart" asp-route-id="@item.Id">
+                                Add to Cart @item.Price.ToString("₹0.00")
+                            </a>
+                        }
+                        else
+                        {
+                            <button class="btn btn-primary btn-sm" disabled>Add to Cart @item.Price.ToString("₹0.00")</button>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@await Html.PartialAsync("_CreateItem", "Movies")

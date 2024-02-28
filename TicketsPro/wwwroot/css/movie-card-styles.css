@@ -1,0 +1,45 @@
+﻿.movie-card {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f4f4f4;
+    margin-bottom: 20px;
+    max-width: 320px; /* Adjust the maximum width */
+    position: relative; /* Ensure relative positioning for absolute positioning of Edit button */
+}
+
+    .movie-card img {
+        width: 100%;
+        max-height: 200px;
+    }
+
+    .movie-card .card-body {
+        padding: 15px;
+    }
+
+        .movie-card .card-body h5 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .movie-card .card-body p {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+    .movie-card .card-footer {
+        background-color: transparent;
+        border-top: none;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .movie-card .btn {
+        border-radius: 25px;
+        font-size: 14px;
+    }

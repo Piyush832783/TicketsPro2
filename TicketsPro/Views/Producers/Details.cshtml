@@ -1,0 +1,38 @@
+﻿@model Producer
+
+@{
+    ViewData["Title"] = "Producer Details";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <!-- Link your CSS file -->
+    <link rel="stylesheet" href="~/css/producer-details-styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="producer-details text-center">
+                    <img src="@Model.ProfilePictureURL" alt="@Model.FullName" class="producer-img">
+                    <h2 class="mt-3">@Model.FullName</h2>
+                    <p>@Model.Bio</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <a href="@Url.Action("Edit", new { id = Model.Id })" class="btn btn-success btn-edit">Edit</a>
+    }
+    <a href="@Url.Action("Index")" class="btn btn-secondary btn-back">Back to List</a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

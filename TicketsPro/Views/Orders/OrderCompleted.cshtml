@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Order completed successfully";
+}
+
+<div class="row">
+    <div class="col-md-6 offset-3 alert alert-success text-center">
+        <h2>Order completed successfully</h2>
+        <p>User Name: @ViewData["UserName"]</p>
+        <p>Movie Name: @ViewData["MovieName"]</p>
+        <p>Ticket Price: @ViewData["TicketPrice"]</p>
+        <p>Number of Tickets: @ViewData["NumberOfTickets"]</p>
+        <p>Total: @ViewData["Total"]</p>
+        <hr />
+        <p>You can check all your orders in the Orders section of your profile</p>
+        <p>Thank you!</p>
+        <a href="@Url.Action("GeneratePDF", "Orders", new { userName = ViewData["UserName"], movieName = ViewData["MovieName"], ticketPrice = ViewData["TicketPrice"], numberOfTickets = ViewData["NumberOfTickets"], total = ViewData["Total"] })">Download PDF</a>
+    </div>
+</div>
