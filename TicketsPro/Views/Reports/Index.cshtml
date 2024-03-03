@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Reports</h1>
+
+
+<a class="dropdown-item" asp-controller="ActorsReport" asp-action="Index"><i class="bi bi-person"></i> Actors Reports</a>
+<a class="dropdown-item" asp-controller="CinemasReport" asp-action="Index"><i class="bi bi-camera-reels"></i> Cinemas Reports</a>
+<a class="dropdown-item" asp-controller="MoviesReport" asp-action="Index"><i class="bi bi-film"></i> Movies Reports</a>
+<a class="dropdown-item" asp-controller="OrderItemsReport" asp-action="Index"><i class="bi bi-cart"></i> OrderItems Reports</a>
+<a class="dropdown-item" asp-controller="ProducersReport" asp-action="Index"><i class="bi bi-headset"></i> Producers Reports</a>

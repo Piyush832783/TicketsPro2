@@ -1,0 +1,53 @@
+﻿@model IEnumerable<eTickets.Models.Producer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/ProducersReport.css" />
+<h1>ProducersReport</h1>
+
+<p>
+    <a class="button" asp-action="Create">Create New</a>
+    <a class="button" asp-action="DownloadPdf">Download PDF</a>
+</p>
+
+<div class="table-container">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Profile Picture
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    <img src="@item.ProfilePictureURL" alt="Profile Picture" style="max-width: 100px; max-height: 100px;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bio)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<eTickets.Models.Actor>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/ActorsReport.css" />
+
+<h1>ActorsReport</h1>
+
+<p>
+    <a class="button" asp-action="Create">Create New</a>
+    <a class="button" asp-action="DownloadPdf">Download PDF</a>
+</p>
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Profile Picture
+                </th>
+                <th>
+                    Full Name
+                </th>
+                <th>
+                    Bio
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@item.ProfilePictureURL" alt="Profile Picture" class="profile-image" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bio)
+                    </td>
+                    <td class="action-links">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> 
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
